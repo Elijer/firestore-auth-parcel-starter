@@ -9,9 +9,13 @@
     <!--<link rel="icon" href="favicon.png"/> -->
     
     <!--Load Fonts-->
-    <link async defer href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@100&display=swap" rel="stylesheet">
+    
 
     <!--CSS LINKS-->
+    <link href = "STYLE/style.scss" rel = "stylesheet" type = "text/css" />
+    <link href = "STYLE/loader.css" rel = "stylesheet" type = "text/css" />
 <!--     <link href = "STYLE/style.scss" rel = "stylesheet" type = "text/css" />
     <link href = "STYLE/welcome.scss" rel = "stylesheet" type = "text/css" />
     <link href = "STYLE/animation.css" rel = "stylesheet" type = "text/css" /> -->
@@ -24,8 +28,12 @@
   <body id = "fade-in">
 
     <div id = "auth-bar">
-      <div id = "login-button"> click to login </div>
+      <div id = "login"></div>
+      <div id = "loader">
+        <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div><!--https://loading.io/css/-->
+      </div>
     </div>
+
 
     <h1> TEST TEST THIS IS A TAAAAST</h1>
 
