@@ -1,15 +1,41 @@
 * {
     font-family: 'JetBrains Mono', monospace;
+    margin: 0px;
+    padding: 0px;
 }
 
 #auth-bar {
     height: 40px;
     background: grey;
     color: white;
-    padding: 30px 20px 5px;
+    padding-top: 20px;
 
-    #login, #loader {
+    #login, #logout {
+        padding: 0px 20px 5px;
+        padding-left: 8%;
+        text-align: center;
+        display: none;
         color: orange;
     }
 
+    #loader-container {
+        padding: 0px 20px 10px;
+        padding-left: 8%;
+        text-align: center;
+    }
+
+    #logout {
+        float: right;
+    }
+
+    #login,  {
+        transition: color 3s;
+        color: white;
+    }
+
+}
+
+#content {
+    padding: 40px;
+    padding-left: 80px;
 }

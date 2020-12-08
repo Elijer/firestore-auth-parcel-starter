@@ -1,61 +1,67 @@
 export function auth(firebase){
 
   var login = document.getElementById("login");
+  var logout = document.getElementById("logout");
   var loader = document.getElementById("loader")
 
   firebase.auth().onAuthStateChanged(function(user) {
+    disp("loading");
     if (user) {
       console.log(user.uid);
       login.innerHTML = `Logged in as ${user.uid}`;
-      loader.style.display = "none";
-
+      disp("in");
     } else {
       login.innerHTML = "login";
-      loader.style.display = "none";
+      disp("out");
     }
   });
 
-    //onChange(fb);
-  
-    // CLICK LISTENER FOR LOGIN BUTTON
-/*     document.getElementById('login').addEventListener('click', function(){
-      console.log("log in stuff");
-      anon(fb);
-    }); */
-
-}
-
-
-function onChange(firebase){
-  firebase.auth().onAuthStateChanged((user) => {
-    if (user) {
-      // User is signed in, see docs for a list of available properties
-      // https://firebase.google.com/docs/reference/js/firebase.User
-      var uid = user.uid;
-      console.log(uid);
-      // ...
-    } else {
-      console.log("User is signed out");
-      // User is signed out
-      // ...
-    }
+  // LOGIN
+  login.addEventListener('click', function(){
+    anon(firebase);
   });
+
+  // LOGOUT
+  logout.addEventListener('click', function(){
+    firebase.auth().signOut();
+  });
+
+  var disp = function(i){
+    switch(i){
+      case "loading":
+        loader.style.display = "block";
+        login.style.display = "none";
+        logout.style.display = "none";
+        break;
+
+      case "in":
+        loader.style.display = "none";
+        login.style.display = "inline";
+        logout.style.display = "inline";
+        break;
+
+      case "out":
+        loader.style.display = "none";
+        login.style.display = "inline";
+        logout.style.display = "none";
+        break;
+    }
+  }
+
 }
 
 
 function anon(firebase){
 
-  console.log(firebase.auth().getCurrentUser());
-
   firebase.auth().signInAnonymously()
   .then(result => {
     const user = result.user;
     console.log(user + "signed in");
-
   })
   .catch((error) => {
     var errorCode = error.code;
     var errorMessage = error.message;
     console.log(errorCode, errorMessage);
   })
+  
 }

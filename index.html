@@ -15,7 +15,7 @@
 
     <!--CSS LINKS-->
     <link href = "STYLE/style.scss" rel = "stylesheet" type = "text/css" />
-    <link href = "STYLE/loader.css" rel = "stylesheet" type = "text/css" />
+    <link href = "STYLE/loader.scss" rel = "stylesheet" type = "text/css" />
 <!--     <link href = "STYLE/style.scss" rel = "stylesheet" type = "text/css" />
     <link href = "STYLE/welcome.scss" rel = "stylesheet" type = "text/css" />
     <link href = "STYLE/animation.css" rel = "stylesheet" type = "text/css" /> -->
@@ -29,13 +29,18 @@
 
     <div id = "auth-bar">
       <div id = "login"></div>
-      <div id = "loader">
-        <div class="lds-ellipsis"><div></div><div></div><div></div><div></div></div><!--https://loading.io/css/-->
+      <div id = "logout"> logout</div>
+      <div id = "loader-container">
+        <div class="spinner" id = "loader">
+          <div class="double-bounce1"></div>
+          <div class="double-bounce2"></div>
+        </div>
       </div>
     </div>
 
-
-    <h1> TEST TEST THIS IS A TAAAAST</h1>
+    <div id = "content">
+      <h1> TEST TEST THIS IS A TAAAAST </h1>
+    </div>
 
     <!--JS-->
     <script src = "/index.js"> </script>
