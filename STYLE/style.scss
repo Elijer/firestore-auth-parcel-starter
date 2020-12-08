@@ -5,32 +5,29 @@
 }
 
 #auth-bar {
-    height: 40px;
+    height: 60px;
     background: grey;
     color: white;
-    padding-top: 20px;
+    padding: 50px 80px 20px;
 
     #login, #logout {
-        padding: 0px 20px 5px;
-        padding-left: 8%;
+        font-size: 24px;
         text-align: center;
         display: none;
+        color: rgb(217, 217, 217);
+    }
+
+    #login:hover, #logout:hover {
         color: orange;
     }
 
     #loader-container {
         padding: 0px 20px 10px;
-        padding-left: 8%;
         text-align: center;
     }
 
     #logout {
         float: right;
-    }
-
-    #login,  {
-        transition: color 3s;
-        color: white;
     }
 
 }

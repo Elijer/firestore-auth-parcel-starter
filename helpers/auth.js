@@ -1,15 +1,22 @@
 export function auth(firebase){
 
+  // RELEVANT DOM ELEMENTS
   var login = document.getElementById("login");
   var logout = document.getElementById("logout");
   var loader = document.getElementById("loader")
 
+  // SET USER PERSISTENCE SETTING
+    // LOCAL:   Auth state persists on client IP unless signout out.
+    // SESSION: Auth state ends when tab or window is closed.
+    // NONE:    Not saved in browser. Cleared when page is refreshed.
+  firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
+
+  // LISTEN FOR CHANGES IN AUTH (login, logout, etc)
   firebase.auth().onAuthStateChanged(function(user) {
     disp("loading");
     if (user) {
-      console.log(user.uid);
-      login.innerHTML = `Logged in as ${user.uid}`;
-      disp("in");
+      //console.log(user.uid);
+      disp("in", user);
     } else {
       login.innerHTML = "login";
       disp("out");
@@ -18,7 +25,7 @@ export function auth(firebase){
 
   // LOGIN
   login.addEventListener('click', function(){
-    anon(firebase);
+    anonLogin(firebase);
   });
 
   // LOGOUT
@@ -26,7 +33,8 @@ export function auth(firebase){
     firebase.auth().signOut();
   });
 
-  var disp = function(i){
+  // DISPLAY
+  var disp = function(i, user){
     switch(i){
       case "loading":
         loader.style.display = "block";
@@ -38,6 +46,7 @@ export function auth(firebase){
         loader.style.display = "none";
         login.style.display = "inline";
         logout.style.display = "inline";
+        login.innerHTML = `Logged in as ${user.uid}`;
         break;
 
       case "out":
@@ -50,8 +59,8 @@ export function auth(firebase){
 
 }
 
-
-function anon(firebase){
+// LOG IN AS ANONYMOUS USER WITH FIREBASE AUTH
+function anonLogin(firebase){
 
   firebase.auth().signInAnonymously()
   .then(result => {
