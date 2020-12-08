@@ -1,4 +1,6 @@
-export function auth(firebase){
+import { rword } from 'rword';
+
+export function auth(firebase, db){
 
   // RELEVANT DOM ELEMENTS
   var login = document.getElementById("login");
@@ -24,7 +26,7 @@ export function auth(firebase){
 
   // LOGIN
   login.addEventListener('click', function(){
-    anonLogin(firebase);
+    anonLogin(firebase, db);
   });
 
   // LOGOUT
@@ -69,11 +71,12 @@ export function auth(firebase){
 }
 
 // LOG IN AS ANONYMOUS USER WITH FIREBASE AUTH
-function anonLogin(firebase){
+function anonLogin(firebase, db){
 
   firebase.auth().signInAnonymously()
   .then(result => {
     const user = result.user;
+    name(user.uid, db)
     console.log(user + "signed in");
   })
   .catch((error) => {
@@ -97,4 +100,33 @@ function signOut(firebase){
     console.log(errorCode, errorMessage);
   })
   
+}
+
+function name(uid, db){
+  var w = rword.generate(3, { length: 4 });
+  var name = w[0] + " " + w[1] + " " + w[2];
+
+  const userRef = db.collection("users").doc(uid);
+
+  userRef.get().then(function(doc) {
+    if (doc.exists) {
+        console.log("Document data:", doc.data());
+    } else {
+      userRef.set({
+        uid: uid,
+        name: name
+    })
+      .then(() => {
+          console.log("Document successfully written!");
+        })
+      .catch((error) => {
+          console.error("Error writing document: ", error);
+        });
+    }
+  }).catch(function(error) {
+      console.log("Error getting document:", error);
+  });
+
+
+
 }

@@ -15,6 +15,6 @@ document.addEventListener("DOMContentLoaded", event => {
 
     handleEmulators(db);
     firestoreTest(db);
-    auth(firebase);
+    auth(firebase, db);
 
 });
