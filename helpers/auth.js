@@ -18,7 +18,6 @@ export function auth(firebase){
       //console.log(user.uid);
       disp("in", user);
     } else {
-      login.innerHTML = "login";
       disp("out");
     }
   });
@@ -44,12 +43,22 @@ export function auth(firebase){
 
       case "in":
         loader.style.display = "none";
-        login.style.display = "inline";
         logout.style.display = "inline";
-        login.innerHTML = `Logged in as ${user.uid}`;
+        login.style.display = "inline";
+        login.classList.add("login-inviz");
+        setTimeout(() => {
+          login.innerHTML = `Logged in as ${user.uid}`;
+          login.classList.remove("login-inviz");
+        }, 220);
+        
         break;
 
       case "out":
+        login.classList.add("login-inviz");
+        setTimeout(() => {
+          login.classList.remove("login-inviz");
+          login.innerHTML = "login";
+        }, 220);
         loader.style.display = "none";
         login.style.display = "inline";
         logout.style.display = "none";
