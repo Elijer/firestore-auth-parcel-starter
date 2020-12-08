@@ -30,7 +30,7 @@ export function auth(firebase){
 
   // LOGOUT
   logout.addEventListener('click', function(){
-    firebase.auth().signOut();
+    signOut(firebase);
   });
 
   // DISPLAY
@@ -66,6 +66,21 @@ function anonLogin(firebase){
   .then(result => {
     const user = result.user;
     console.log(user + "signed in");
+  })
+  .catch((error) => {
+    var errorCode = error.code;
+    var errorMessage = error.message;
+    console.log(errorCode, errorMessage);
+  })
+  
+}
+
+// LOG OUT WITH FIREBASE AUTH
+function signOut(firebase){
+
+  firebase.auth().signOut()
+  .then(result => {
+    console.log("signed out");
   })
   .catch((error) => {
     var errorCode = error.code;
