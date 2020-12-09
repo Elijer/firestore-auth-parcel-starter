@@ -1,4 +1,4 @@
-import { rword } from 'rword';
+import whimsy from 'whimsy';
 
 export function auth(firebase, db){
 
@@ -110,8 +110,7 @@ function signOut(firebase){
 }
 
 function name(uid, db){
-  var w = rword.generate(3, { length: 4 });
-  var name = w[0] + " " + w[1] + " " + w[2];
+  let name =  whimsy('{{adjective}}_{{noun}}');
 
   const userRef = db.collection("users").doc(uid);
   userRef.set({
