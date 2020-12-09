@@ -11,19 +11,16 @@
     padding: 50px 80px 20px;
 
     #login, #logout {
-        font-size: 24px;
+        color: white;
+        transition: opacity .2s;
+        font-size: 30px;
         text-align: center;
         display: none;
-        //color: rgb(217, 217, 217);
+        text-shadow: 2px 2px rgb(108, 108, 108);
     }
 
     #login:hover, #logout:hover {
         color: orange;
-    }
-
-    .login-viz {
-        color: white;
-        transition: opacity .2s;
     }
 
     .login-inviz {
@@ -43,6 +40,15 @@
 }
 
 #content {
-    padding: 40px;
-    padding-left: 80px;
+    width: 50%;
+    margin-top: 6%;
+    margin-left: 80px;
+
+    h1 {
+        padding-bottom: 20px;
+    }
+
+    p {
+        font-size: 14px;
+    }
 }
