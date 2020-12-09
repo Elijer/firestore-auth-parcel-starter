@@ -18,7 +18,14 @@ export function auth(firebase, db){
     disp("loading");
     if (user) {
       //console.log(user.uid);
-      disp("in", user);
+
+      const userRef = db.collection("users").doc(user.uid);
+
+      userRef.get().then(function(doc) {
+        let name = doc.data().name;
+        disp("in", name);
+      })
+
     } else {
       disp("out");
     }
@@ -49,7 +56,7 @@ export function auth(firebase, db){
         login.style.display = "inline";
         login.classList.add("login-inviz");
         setTimeout(() => {
-          login.innerHTML = `Logged in as ${user.uid}`;
+          login.innerHTML = `logged in as ${user}`;
           login.classList.remove("login-inviz");
         }, 220);
         
@@ -107,8 +114,12 @@ function name(uid, db){
   var name = w[0] + " " + w[1] + " " + w[2];
 
   const userRef = db.collection("users").doc(uid);
+  userRef.set({
+    uid: uid,
+    name: name
+  })
 
-  userRef.get().then(function(doc) {
+/*   userRef.get().then(function(doc) {
     if (doc.exists) {
         console.log("Document data:", doc.data());
     } else {
@@ -125,7 +136,7 @@ function name(uid, db){
     }
   }).catch(function(error) {
       console.log("Error getting document:", error);
-  });
+  }); */
 
 
 
