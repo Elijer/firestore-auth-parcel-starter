@@ -57,6 +57,10 @@
             color: orange;
         }
 
+        #username:focus {
+            outline:0;
+        }
+
         #username:hover {
             color: rgb(210, 175, 175);
             border-bottom: 2px solid rgb(210, 175, 175);

@@ -11,13 +11,13 @@ export function auth(firebase, db){
   var loader = document.getElementById("loader")
 
   // CHANGE USERNAME
-  username.addEventListener('keydown', contentEdited);
+  username.addEventListener('keydown', limitUsernameInput);
   username.addEventListener('focus', changeUsername, true);
 
   // SET USER PERSISTENCE SETTING
-    // LOCAL:   Auth state persists on client IP unless signout out.
+    // LOCAL:   Persists in browser unless signed out.
     // SESSION: Auth state ends when tab or window is closed.
-    // NONE:    Not saved in browser. Cleared when page is refreshed.
+    // NONE:    Not saved in browser. Cleared on page refresh.
   firebase.auth().setPersistence(firebase.auth.Auth.Persistence.NONE);
 
   // LISTEN FOR CHANGES IN AUTH (login, logout, etc)
@@ -131,26 +131,14 @@ function name(uid, db){
 }
 
 
-function contentEdited(e){
+function limitUsernameInput(e){
 
-  console.log(e);
-
-  let original = username.innerHTML;
-  let leng = original.length;
+  let leng = username.innerHTML.length;
   let charLimit = 20;
 
   if (leng > charLimit && e.keyCode != 8 || e.key === "Enter"){
     e.preventDefault();
   }
-
-/*   let original = username.innerHTML;
-  let leng = original.length;
-  let charLimit = 20;
-  if (leng > 20){
-    alert("Sorry! Your Username can't be that long");
-    username.innerHTML = username.innerHTML.substring(0, original.length-2);
-  }
-  console.log(original.length); */
 
 }
 
