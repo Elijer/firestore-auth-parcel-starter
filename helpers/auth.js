@@ -133,13 +133,14 @@ function name(uid, db){
 
 function contentEdited(e){
 
+  console.log(e);
+
   let original = username.innerHTML;
   let leng = original.length;
   let charLimit = 20;
 
-
-  if (leng > charLimit && e.keyCode != 8){
-    event.preventDefault();
+  if (leng > charLimit && e.keyCode != 8 || e.key === "Enter"){
+    e.preventDefault();
   }
 
 /*   let original = username.innerHTML;
