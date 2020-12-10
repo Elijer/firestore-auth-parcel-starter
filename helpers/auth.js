@@ -4,6 +4,9 @@ export function auth(firebase, db){
 
   // RELEVANT DOM ELEMENTS
   var login = document.getElementById("login");
+  var loginState = document.getElementById("login-state");
+  var username = document.getElementById("username");
+
   var logout = document.getElementById("logout");
   var loader = document.getElementById("loader")
 
@@ -11,13 +14,12 @@ export function auth(firebase, db){
     // LOCAL:   Auth state persists on client IP unless signout out.
     // SESSION: Auth state ends when tab or window is closed.
     // NONE:    Not saved in browser. Cleared when page is refreshed.
-  firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
+  firebase.auth().setPersistence(firebase.auth.Auth.Persistence.NONE);
 
   // LISTEN FOR CHANGES IN AUTH (login, logout, etc)
   firebase.auth().onAuthStateChanged(function(user) {
     disp("loading");
     if (user) {
-      //console.log(user.uid);
 
       const userRef = db.collection("users").doc(user.uid);
 
@@ -56,7 +58,9 @@ export function auth(firebase, db){
         login.style.display = "inline";
         login.classList.add("login-inviz");
         setTimeout(() => {
-          login.innerHTML = `logged in as ${user}`;
+          //loginState.innerHTML = 'logged in as '
+          //username.innerHTML = user;
+          //login.innerHTML = `logged in as ${user}`;
           login.classList.remove("login-inviz");
         }, 220);
         
@@ -66,7 +70,8 @@ export function auth(firebase, db){
         login.classList.add("login-inviz");
         setTimeout(() => {
           login.classList.remove("login-inviz");
-          login.innerHTML = "login";
+          //loginState.innerHTML = "login";
+          //username.innerHTML = "";
         }, 220);
         loader.style.display = "none";
         login.style.display = "inline";

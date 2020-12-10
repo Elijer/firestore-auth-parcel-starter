@@ -19,7 +19,7 @@
         text-shadow: 2px 2px rgb(108, 108, 108);
     }
 
-    #login:hover, #logout:hover {
+    #logout:hover {
         color: orange;
     }
 
@@ -35,6 +35,28 @@
 
     #logout {
         float: right;
+    }
+
+    #login {
+
+        #login-state, #username {
+            display: inline;
+            text-align: left;
+            float: left;
+        }
+
+        #login-state {
+            padding-right: 12px;
+        }
+
+        #username {
+
+        }
+
+        #username:hover {
+            color: orange;
+            border-bottom: 2px solid orange
+        }
     }
 
 }
