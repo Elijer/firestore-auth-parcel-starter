@@ -132,7 +132,16 @@ function name(uid, db){
 
 function changeUsername(){
 
+  let original = username.innerHTML;
+
   username.addEventListener('blur', (event) => {
+
+    let newOne = username.innerHTML;
+
+    if (newOne.length < 3){
+      alert("Username has to be at least 3 characters");
+      username.innerHTML = original;
+    }
 
     console.log(username.innerHTML);
 
