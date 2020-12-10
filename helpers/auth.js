@@ -11,7 +11,7 @@ export function auth(firebase, db){
   var loader = document.getElementById("loader")
 
   // CHANGE USERNAME
-  //username.addEventListener('DOMSubtreeModified', changeUsername);
+  username.addEventListener('keydown', contentEdited);
   username.addEventListener('focus', changeUsername, true);
 
   // SET USER PERSISTENCE SETTING
@@ -129,6 +129,30 @@ function name(uid, db){
     name: name
   })
 }
+
+
+function contentEdited(e){
+
+  let original = username.innerHTML;
+  let leng = original.length;
+  let charLimit = 20;
+
+
+  if (leng > charLimit && e.keyCode != 8){
+    event.preventDefault();
+  }
+
+/*   let original = username.innerHTML;
+  let leng = original.length;
+  let charLimit = 20;
+  if (leng > 20){
+    alert("Sorry! Your Username can't be that long");
+    username.innerHTML = username.innerHTML.substring(0, original.length-2);
+  }
+  console.log(original.length); */
+
+}
+
 
 function changeUsername(){
 
