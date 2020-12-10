@@ -10,7 +10,9 @@ export function auth(firebase, db){
   var logout = document.getElementById("logout");
   var loader = document.getElementById("loader")
 
-  username.addEventListener("click", changeUsername);
+  // CHANGE USERNAME
+  //username.addEventListener('DOMSubtreeModified', changeUsername);
+  username.addEventListener('focus', changeUsername, true);
 
   // SET USER PERSISTENCE SETTING
     // LOCAL:   Auth state persists on client IP unless signout out.
@@ -130,5 +132,9 @@ function name(uid, db){
 
 function changeUsername(){
 
-  console.log("I would like to change my username please");
+  username.addEventListener('blur', (event) => {
+
+    console.log(username.innerHTML);
+
+  })
 }
