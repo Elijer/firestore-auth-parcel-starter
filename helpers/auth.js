@@ -10,9 +10,7 @@ export function auth(firebase, db){
   var logout = document.getElementById("logout");
   var loader = document.getElementById("loader")
 
-  username.addEventListener("click", function(){
-    changeUsername();
-  })
+  username.addEventListener("click", changeUsername);
 
   // SET USER PERSISTENCE SETTING
     // LOCAL:   Auth state persists on client IP unless signout out.
@@ -38,7 +36,7 @@ export function auth(firebase, db){
   });
 
   // LOGIN
-  login.addEventListener('click', function(){
+  loginState.addEventListener('click', function(){
     anonLogin(firebase, db);
   });
 
@@ -131,5 +129,6 @@ function name(uid, db){
 }
 
 function changeUsername(){
+
   console.log("I would like to change my username please");
 }
