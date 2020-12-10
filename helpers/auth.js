@@ -10,6 +10,10 @@ export function auth(firebase, db){
   var logout = document.getElementById("logout");
   var loader = document.getElementById("loader")
 
+  username.addEventListener("click", function(){
+    changeUsername();
+  })
+
   // SET USER PERSISTENCE SETTING
     // LOCAL:   Auth state persists on client IP unless signout out.
     // SESSION: Auth state ends when tab or window is closed.
@@ -58,8 +62,9 @@ export function auth(firebase, db){
         login.style.display = "inline";
         login.classList.add("login-inviz");
         setTimeout(() => {
-          //loginState.innerHTML = 'logged in as '
-          //username.innerHTML = user;
+          loginState.innerHTML = 'logged in as '
+          username.innerHTML = user;
+          loginState.classList.remove("login-go");
           //login.innerHTML = `logged in as ${user}`;
           login.classList.remove("login-inviz");
         }, 220);
@@ -70,8 +75,9 @@ export function auth(firebase, db){
         login.classList.add("login-inviz");
         setTimeout(() => {
           login.classList.remove("login-inviz");
-          //loginState.innerHTML = "login";
-          //username.innerHTML = "";
+          loginState.innerHTML = "login";
+          username.innerHTML = "";
+          loginState.classList.add("login-go");
         }, 220);
         loader.style.display = "none";
         login.style.display = "inline";
@@ -122,26 +128,8 @@ function name(uid, db){
     uid: uid,
     name: name
   })
+}
 
-/*   userRef.get().then(function(doc) {
-    if (doc.exists) {
-        console.log("Document data:", doc.data());
-    } else {
-      userRef.set({
-        uid: uid,
-        name: name
-    })
-      .then(() => {
-          console.log("Document successfully written!");
-        })
-      .catch((error) => {
-          console.error("Error writing document: ", error);
-        });
-    }
-  }).catch(function(error) {
-      console.log("Error getting document:", error);
-  }); */
-
-
-
+function changeUsername(){
+  console.log("I would like to change my username please");
 }

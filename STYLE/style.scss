@@ -39,6 +39,10 @@
 
     #login {
 
+        .login-go:hover {
+            color: orange;
+        }
+
         #login-state, #username {
             display: inline;
             text-align: left;
@@ -50,12 +54,12 @@
         }
 
         #username {
-
+            color: orange;
         }
 
         #username:hover {
-            color: orange;
-            border-bottom: 2px solid orange
+            color: rgb(210, 175, 175);
+            border-bottom: 2px solid rgb(210, 175, 175);
         }
     }
 
