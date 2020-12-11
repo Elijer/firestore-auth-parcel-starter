@@ -60,6 +60,7 @@ export function auth(firebase, db){
         loader.style.display = "none";
         logout.style.display = "inline";
         login.style.display = "inline";
+        // login-inviz and the timeout is to animate a fade
         login.classList.add("login-inviz");
         setTimeout(() => {
           loginState.innerHTML = 'logged in as '
@@ -72,6 +73,7 @@ export function auth(firebase, db){
         break;
 
       case "out":
+        // login-inviz and the timeout is to animate a fade
         login.classList.add("login-inviz");
         setTimeout(() => {
           login.classList.remove("login-inviz");
@@ -147,11 +149,12 @@ function changeUsername(firebase, db){
 
   let original = username.innerHTML;
 
+  // When user clicks away from the username, THEN whatever changes they made are saved to DB
   username.addEventListener('blur', (event) => {
 
     let newOne = username.innerHTML;
 
-    if (newOne.length < 3){
+    if (newOne.length < 3){s
       alert("Username has to be at least 3 characters");
       username.innerHTML = original;
     }
