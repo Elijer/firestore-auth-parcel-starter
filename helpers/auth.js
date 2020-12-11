@@ -12,13 +12,13 @@ export function auth(firebase, db){
 
   // CHANGE USERNAME
   username.addEventListener('keydown', limitUsernameInput);
-  username.addEventListener('focus', changeUsername, true);
+  username.addEventListener('focus', changeUsername(firebase, db), true);
 
   // SET USER PERSISTENCE SETTING
     // LOCAL:   Persists in browser unless signed out.
     // SESSION: Auth state ends when tab or window is closed.
     // NONE:    Not saved in browser. Cleared on page refresh.
-  firebase.auth().setPersistence(firebase.auth.Auth.Persistence.NONE);
+  firebase.auth().setPersistence(firebase.auth.Auth.Persistence.LOCAL);
 
   // LISTEN FOR CHANGES IN AUTH (login, logout, etc)
   firebase.auth().onAuthStateChanged(function(user) {
@@ -143,7 +143,7 @@ function limitUsernameInput(e){
 }
 
 
-function changeUsername(){
+function changeUsername(firebase, db){
 
   let original = username.innerHTML;
 
@@ -156,7 +156,11 @@ function changeUsername(){
       username.innerHTML = original;
     }
 
-    console.log(username.innerHTML);
-
+    let uid = firebase.auth().currentUser.uid;
+    const userRef = db.collection("users").doc(uid);
+    
+    userRef.set({
+      name: newOne
+    })
   })
 }
